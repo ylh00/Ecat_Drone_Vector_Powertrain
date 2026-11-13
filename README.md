@@ -92,31 +92,12 @@ flowchart TB
 - [x] 动力单元 PCB 硬件开发
 
 ### 计划开发 | Planned
-- [ ] LinuxRT 实时运行环境搭建
-- [ ] EtherCAT 主站部署及动力单元联调
-- [ ] Simulink 控制模型 ARM64 代码生成与部署
+
 - [ ] RDK S600 NPU 端侧 AI 环境搭建
 - [ ] 动态目标检测、跟踪与运动预测
 - [ ] 机械臂空中击球与精准抓取
 - [ ] AI 感知与实时运动控制协同
 
-## 6. 仓库结构 | Repository Structure
-
-```text
-Ecat_Drone_Vector_Powertrain/
-├── boards/                 # PCB 与板卡工程文件
-├── structure/              # 动力单元及整机结构文件
-├── docs/
-│   └── images/             # README 展示图片
-├── index.html              # GitHub Pages 项目展示网站
-└── README.md
-```
-
-## 7. 在线展示 | Online Demo
-
-启用 GitHub Pages 后，可通过以下地址访问项目网站：
-
-https://ylh00.github.io/Ecat_Drone_Vector_Powertrain/
 
 ## Vision
 
