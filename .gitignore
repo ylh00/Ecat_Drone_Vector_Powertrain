@@ -21,3 +21,6 @@
 .vscode/
 *.log
 Thumbs.db
+
+.work/
+sdk_env_v1.13.0/
