@@ -1,0 +1,35 @@
+﻿# Copyright (c) 2026 HPMicro
+# SPDX-License-Identifier: BSD-3-Clause
+#
+# Board: ecat_drone_5e3y
+#   - SoC      : HPM5E3Y (EtherCAT slave MCU, internal XPI NOR flash + internal MII PHY)
+#   - Function : EtherCAT servo drive / drone vector powertrain controller
+#                (2x bidirectional-DShot BLDC ESC, 2x S288 bus servo on UART2/UART3,
+#                 RGB status LED on PWM1, ADC monitoring, USB CDC, UART0 log)
+#
+# Note: HPM5E3Y and HPM5E31 of HPM_sdk v1.13.0 share byte-identical SoC headers
+#       (hpm_soc.h / hpm_iomux.h / hpm_soc_ip.h / hpm_soc_ip_feature.h ...),
+#       but HPM_sdk v1.13.0 does not ship the HPM5E3Y build support files
+#       (system.c / hpm_clock_drv.c / linker scripts / boot header).  The board
+#       therefore selects HPM5E31 as the SDK SoC name.  Run
+#       ../../scripts/add_hpm5e3y_soc_support.ps1 once if you want to switch
+#       `soc:` below to HPM5E3Y and build with the HPM5E3Y directory.
+
+board:
+    soc: HPM5E31             # HPM5E3Y shares the same IP; see note above
+    device: HPM5E3YIGN1      # HPM5E3YIGN1 = 内置 1MB flash + 2x 片内 MII PHY (JLink 若未收录可用 HPM5E31xGNx)
+    openocd-soc: hpm5e00     # used for openocd soc config file name: hpm5e00.cfg
+    openocd-probe: ft2232    # used for openocd probe config file name: ft2232.cfg
+    on-board-flash:
+      type: qspi-nor-flash
+      size: 1M               # internal XPI NOR flash of HPM5E3Y (in-package)
+      # The EtherCAT EEPROM is emulated in flash at offset 0x80000 (see board.h),
+      # so the application image may use up to 512K.
+    feature:
+      - board_esc
+      - board_usb_device
+      - board_uart
+      - board_pwm
+      - board_adc16
+      - board_rgb_led
+

@@ -1,0 +1,23 @@
+# Build outputs
+.user_template/**/build_*/
+**/build_*/
+**/build/
+*.elf
+*.bin
+*.map
+*.asm
+*.hex
+*.o
+*.obj
+*.d
+*.a
+*.su
+
+# Scratch / analysis workspace
+.work/
+
+# Tool outputs
+.idea/
+.vscode/
+*.log
+Thumbs.db
