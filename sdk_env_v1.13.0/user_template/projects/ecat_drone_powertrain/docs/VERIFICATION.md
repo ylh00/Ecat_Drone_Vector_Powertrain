@@ -17,10 +17,10 @@
 | 缁撴瀯浣?鍗忚濂戠害锛?2/48/54/70 B 绛夛級 | **鍏ㄩ儴閫氳繃** | 搂2 `_Static_assert` + `nm` |
 | EtherCAT PDO锛圗SI/CSV 鈫?`ecat_pdo.h`锛?| **涓€鑷达紙22/48 B锛屽亸绉婚€愰」鍚诲悎锛?* | 搂4 |
 | CoE 鍙傛暟瀵硅薄 0x2000..0x203B锛?0 椤癸級绫诲瀷/瀹藉害 | **60/60 涓€鑷?* | 搂4.4锛堟鍓?11 椤圭被鍨嬮敊璇凡鐢?ecat-agent 淇骞跺楠岋級 |
-| 涓婁綅鏈哄崗璁嚜妫€ | **218/218 OK**锛坧roto_test锛夛紝**43/43 PASS**锛坔ost --selftest锛?| 搂5 |
+| 涓婁綅鏈哄崗璁嚜妫€ | **238/238 OK**锛坧roto_test锛夛紝**43/43 PASS**锛坔ost --selftest锛?| 搂5 |
 | 鑸垫満甯у崟鍏冩祴璇?| **58 passed / 0 failed** | 搂5.4 |
 | PARAM_COUNT / 鍙傛暟琛ㄥ畬鏁存€?| **60 / 0..59 鍏ㄨ鐩?* | 搂6.1 |
-| 鍥轰欢闀滃儚 vs 504 KB 搴旂敤鍖轰笂闄?| **154,876 B << 516,096 B锛?0.0%锛?* | 搂6.3 |
+| 鍥轰欢闀滃儚 vs 504 KB 搴旂敤鍖轰笂闄?| **156,332 B << 516,096 B锛?0.0%锛?* | 搂6.3 |
 | 鍙傛暟鍖?/ EEPROM 妯℃嫙鍖哄啿绐?| **鏃犲啿绐?* | 搂6.4 |
 
 ---
@@ -50,7 +50,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File `
 ```
 
 鏋勫缓鏃ュ織锛歚.work\build_verify\build_flash_xip.log`锛?3 KB锛夈€?瀹屾暣鏃ュ織涓?`== BUILD OK:` 涓?`[82/82] Linking C executable output\ecat_drone_powertrain.elf` 鍧囧嚭鐜帮紝閫€鍑虹爜 0銆?
-琛ュ厖锛歀ead 鍚屾椂鐢?`scripts\build.cmd clean`锛堜慨澶?`%~dp0` 鍙傛暟绉讳綅 bug 鍚庯級鍋氳繃涓€娆＄嫭绔嬩粠闆舵瀯寤猴紝寰楀埌鐩稿悓鐨?`FLASH: 154876 B`锛屼氦鍙夊嵃璇佹湰缁撴灉銆?
+琛ュ厖锛歀ead 鍚屾椂鐢?`scripts\build.cmd clean`锛堜慨澶?`%~dp0` 鍙傛暟绉讳綅 bug 鍚庯級鍋氳繃涓€娆＄嫭绔嬩粠闆舵瀯寤猴紝寰楀埌鐩稿悓鐨?`FLASH: 156332 B`锛屼氦鍙夊嵃璇佹湰缁撴灉銆?
 ### 1.2 浜х墿涓庝綋绉?
 | 鏂囦欢 | 澶у皬 | 璇存槑 |
 |---|---|---|
@@ -63,7 +63,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File `
 ### 1.3 鍐呭瓨鍗犵敤锛堥摼鎺ュ櫒 `--print-memory-usage` 鍘熷杈撳嚭锛?
 ```
 Memory region         Used Size  Region Size  %age Used
-           FLASH:      154876 B         1 MB     14.77%
+           FLASH:      156332 B         1 MB     14.77%
              ILM:       10000 B       128 KB      7.63%
              DLM:         32 KB       128 KB     25.00%
         AXI_SRAM:       42560 B       192 KB     21.65%
@@ -243,7 +243,7 @@ build\ecat_drone_host.exe --selftest
 ```powershell
 python .work\proto_test\test_host_proto.py
 # commands: 28  parameters: 60  telemetry: 54 bytes  param desc: 70 bytes
-# All 218 checks OK
+# All 238 checks OK
 python .work\servo_test\test_servo_frames.py
 # RESULT: 58 passed, 0 failed 鈥?ALL TESTS PASSED
 ```
@@ -259,7 +259,7 @@ python .work\servo_test\test_servo_frames.py
 ### 6.2 鏍￠獙涓庣被鍨?
 - `param_check_type()`锛坄param.c:355-384`锛夛細U8/U16/U32 璐熷€间笌涓婄晫銆両16 鑼冨洿銆両32 鐩存帴鎺ュ彈锛沗param_check_value()`锛?388-409锛夊啀鍋?min/max 涓?DShot rate 鏋氫妇鏍￠獙銆?- `param_clamp()`锛?411-424锛夛細浠?Flash 璇诲嚭鐨勫€煎厛鎸夌被鍨?鑼冨洿閽充綅锛屽紓甯稿€煎洖閫€榛樿鍊硷紱`persist=0` 鐨勫弬鏁帮紙`PARAM_USB_AUTO_TELEMETRY_HZ`锛夊姞杞芥椂寮哄埗榛樿鍊硷紙:576-582锛夈€?
 ### 6.3 Flash 瀛樺偍瀹夊叏鎬?
-- 瀛樺偍浣嶇疆锛歑IP 鍦板潃 = `BOARD_FLASH_BASE_ADDRESS + PARAM_FLASH_OFFSET(0x7E000)`锛坄param.c:325`锛夛紝4 KB 鎵囧尯锛坄param.h:41-42`锛夈€?- 鏁版嵁鍧?`param_flash_blob_t`锛氬ご閮?16 B锛坄magic=0x41524950`銆乣version=1`銆乣count=60`銆乣crc16`銆乺eserved銆乸ad锛? 60脳i32 鍊硷紝**闈欐€佹柇瑷€ = 鎭板ソ 256 B = 涓€涓?NOR page**锛屼笖 `values` 鍋忕Щ = 16銆丆RC 2 瀛楄妭瀵归綈锛坄param.c:306-323`锛夈€?- CRC锛欳RC16-CCITT-FALSE 瑕嗙洊鏁翠釜 blob锛堣绠楁椂 crc 瀛楁缃?0xFFFF锛夛紝淇濆瓨/鍔犺浇鐢ㄥ悓涓€绠楁硶锛?439-464锛夛紱鏍￠獙 magic + version + count + CRC锛屼换涓€涓嶇 鈫?`PARAM_ERR_FLASH`銆?- 鎿﹀啓娴佺▼锛坄param_flash_store`锛?473-530锛夛細鍏冲叏灞€涓柇 鈫?棣栨璋冪敤 `rom_xpi_nor_auto_config()` 骞剁紦瀛橀厤缃?鈫?鎿﹂櫎 `PARAM_FLASH_OFFSET..+0x1000` 涓€涓墖鍖?鈫?缂栫▼ 256 B 鈫?`fencei()` 鈫?**鍥炶 memcmp + 鍐嶆鏍￠獙**锛涘け璐ヨ鏁板苟杩斿洖閿欒銆傜┖鐗囷紙鍏?0xFF锛夋垨鎹熷潖鍧楀潎璧扳€滀娇鐢ㄩ粯璁ゅ€?+ 鍛婅鈥濊矾寰勶紙`param_init:553-559`锛夛紝涓嶄細鍐欏潖浠ｇ爜鍖猴紙鎿﹂櫎鍦板潃鍥哄畾涓哄弬鏁版墖鍖猴級銆?- 涓庝唬鐮佸尯/EEPROM 鍖哄叧绯伙細鍥轰欢 FLASH 鍗犵敤 **154,876 B**锛岃繙灏忎簬鍙傛暟鍖鸿捣鐐?0x7E000锛?16,096 B锛夛紱`.bin` 161,800 B銆傚弬鏁板尯 0x7E000-0x7EFFF 涓?EtherCAT EEPROM 妯℃嫙鍖?0x80000-0x8FFFF锛?6脳4 KB锛宍ecat_config.h:39-45`锛?*涓嶉噸鍙?*锛屼腑闂?0x7F000-0x7FFFF 绌洪棽銆傞摼鎺ュ櫒鏈彁渚?0x7E000 鐨勯摼鎺ユ湡纭笂闄愶紙`param.h` 娉ㄩ噴鎻愬強鈥渓inker script 涓湁妫€鏌モ€濓紝瀹為檯 SDK `flash_xip.ld` 鏈寘鍚妫€鏌ワ級鈥斺€斿綋鍓?30% 浣欓噺瓒冲锛屽缓璁悗缁湪閾炬帴鑴氭湰/CMake 鍔?`ASSERT(_flash_end < 0x7E000)` 纭繚鎶わ紙浣庨闄╋級銆?
+- 瀛樺偍浣嶇疆锛歑IP 鍦板潃 = `BOARD_FLASH_BASE_ADDRESS + PARAM_FLASH_OFFSET(0x7E000)`锛坄param.c:325`锛夛紝4 KB 鎵囧尯锛坄param.h:41-42`锛夈€?- 鏁版嵁鍧?`param_flash_blob_t`锛氬ご閮?16 B锛坄magic=0x41524950`銆乣version=1`銆乣count=60`銆乣crc16`銆乺eserved銆乸ad锛? 60脳i32 鍊硷紝**闈欐€佹柇瑷€ = 鎭板ソ 256 B = 涓€涓?NOR page**锛屼笖 `values` 鍋忕Щ = 16銆丆RC 2 瀛楄妭瀵归綈锛坄param.c:306-323`锛夈€?- CRC锛欳RC16-CCITT-FALSE 瑕嗙洊鏁翠釜 blob锛堣绠楁椂 crc 瀛楁缃?0xFFFF锛夛紝淇濆瓨/鍔犺浇鐢ㄥ悓涓€绠楁硶锛?439-464锛夛紱鏍￠獙 magic + version + count + CRC锛屼换涓€涓嶇 鈫?`PARAM_ERR_FLASH`銆?- 鎿﹀啓娴佺▼锛坄param_flash_store`锛?473-530锛夛細鍏冲叏灞€涓柇 鈫?棣栨璋冪敤 `rom_xpi_nor_auto_config()` 骞剁紦瀛橀厤缃?鈫?鎿﹂櫎 `PARAM_FLASH_OFFSET..+0x1000` 涓€涓墖鍖?鈫?缂栫▼ 256 B 鈫?`fencei()` 鈫?**鍥炶 memcmp + 鍐嶆鏍￠獙**锛涘け璐ヨ鏁板苟杩斿洖閿欒銆傜┖鐗囷紙鍏?0xFF锛夋垨鎹熷潖鍧楀潎璧扳€滀娇鐢ㄩ粯璁ゅ€?+ 鍛婅鈥濊矾寰勶紙`param_init:553-559`锛夛紝涓嶄細鍐欏潖浠ｇ爜鍖猴紙鎿﹂櫎鍦板潃鍥哄畾涓哄弬鏁版墖鍖猴級銆?- 涓庝唬鐮佸尯/EEPROM 鍖哄叧绯伙細鍥轰欢 FLASH 鍗犵敤 **156,332 B**锛岃繙灏忎簬鍙傛暟鍖鸿捣鐐?0x7E000锛?16,096 B锛夛紱`.bin` 161,800 B銆傚弬鏁板尯 0x7E000-0x7EFFF 涓?EtherCAT EEPROM 妯℃嫙鍖?0x80000-0x8FFFF锛?6脳4 KB锛宍ecat_config.h:39-45`锛?*涓嶉噸鍙?*锛屼腑闂?0x7F000-0x7FFFF 绌洪棽銆傞摼鎺ュ櫒鏈彁渚?0x7E000 鐨勯摼鎺ユ湡纭笂闄愶紙`param.h` 娉ㄩ噴鎻愬強鈥渓inker script 涓湁妫€鏌モ€濓紝瀹為檯 SDK `flash_xip.ld` 鏈寘鍚妫€鏌ワ級鈥斺€斿綋鍓?30% 浣欓噺瓒冲锛屽缓璁悗缁湪閾炬帴鑴氭湰/CMake 鍔?`ASSERT(_flash_end < 0x7E000)` 纭繚鎶わ紙浣庨闄╋級銆?
 ### 6.4 杩愯鏈熼闄?
 - ~~`param_save()` 鍦ㄦ摝闄?缂栫▼鏈熼棿鍏抽棴鍏ㄥ眬涓柇锛岀敱 USB 鍛戒护 `HOST_CMD_PARAM_SAVE` 鍦?EtherCAT OP 涓皟鐢ㄤ細灞忚斀 SYNC/PDI 涓柇銆倊~ **宸蹭慨澶嶏紙Lead 闆嗘垚淇锛?*锛歚host_cmd_param_save()` 鐜板湪鍦?`g_ecat_op_active != 0` 鏃剁洿鎺ヨ繑鍥?`HOST_STATUS_ERR_NOT_READY`锛孫P 涓笉浼氭墽琛?Flash 鎿﹀啓锛涗笂浣嶆満闇€鍦ㄩ潪 OP 鐘舵€佷繚瀛樺弬鏁帮紙`host_proto_app.c` 鐨?PARAM_SAVE 澶勭悊锛夈€?
 ---
@@ -340,3 +340,4 @@ python .work\servo_test\test_servo_frames.py
 | `sdk_env_v1.13.0\user_template\tools\ecat_drone_host\build\selftest.log` | 涓婁綅鏈鸿嚜妫€ 43/43 閫氳繃鎶ュ憡 |
 
 **Git 鐘舵€侊細鏈仛浠讳綍 commit锛堟寜浠诲姟瑕佹眰锛夈€?* verifier 鐨勬敼鍔ㄤ粎涓?`docs/PINMAP.md`銆乣docs/ARCHITECTURE.md` 鐨勬枃妗ｄ慨姝ｄ笌鏈?`docs/VERIFICATION.md` 鏂板銆?
+
